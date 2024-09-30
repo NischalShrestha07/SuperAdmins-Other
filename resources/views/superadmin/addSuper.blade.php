@@ -87,6 +87,7 @@
                                                     class="form-control mb-2">
                                             </div>
 
+
                                             <div class="mb-3">
                                                 <label for="email">Email:</label>
                                                 <input type="email" id="email" name="email" placeholder="Email Address"
@@ -97,15 +98,17 @@
                                                 <input type="text" id="password" name="password" placeholder="Password"
                                                     class="form-control mb-2">
                                             </div>
-                                            {{-- <div class="mb-3">
-                                                <label for="tax">Tax:</label>
-                                                <select class="form-control" name="tax" id="tax">
+                                            <div class="mb-3">
+                                                <label for="role_id">Role:</label>
+                                                <select class="form-control" name="role_id" id="role_id">
                                                     <option value="" selected>Role</option>
-                                                    <option value="1">SuperAdmin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">Staff</option>
+                                                    <option value="superadmin">SuperAdmin</option>
+                                                    <option value="admin">Admin</option>
+                                                    <option value="staff">Staff</option>
                                                 </select>
-                                            </div> --}}
+                                            </div>
+                                            {{-- henu parxa yeslai
+                                            --}}
 
                                             {{-- Dependent Dropdown
                                             <div class="mb-3">
@@ -143,6 +146,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>NAME</th>
+                                        <th>Role</th>
                                         <th>EMAIL</th>
                                         <th>PASSWORD</th>
                                         <th>ACTIONS</th>
@@ -160,6 +164,7 @@
 
                                         <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td>
+                                        <td>{{ $item->role }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->password }}</td>
 
@@ -237,6 +242,11 @@
                                                                     </div>
                                                                     <div class="row">
 
+                                                                        <div class="col-md-6">
+                                                                            <h6><strong>Role:</strong></h6>
+                                                                            <p>{{ $item->role }}
+                                                                            </p>
+                                                                        </div>
                                                                         <div class="col-md-6">
                                                                             <h6><strong>Password:</strong></h6>
                                                                             <p>{{ $item->password }}
@@ -322,6 +332,16 @@
                                                                         value="{{ $item->password }}"
                                                                         class="form-control mb-2">
 
+                                                                    <div class="mb-3">
+                                                                        <label for="role">Role:</label>
+                                                                        <select class="form-control" name="role"
+                                                                            id="role">
+                                                                            <option value="" selected>Role</option>
+                                                                            <option value="1">SuperAdmin</option>
+                                                                            <option value="2">Admin</option>
+                                                                            <option value="3">Staff</option>
+                                                                        </select>
+                                                                    </div>
 
                                                                     <input type="hidden" name="id"
                                                                         value="{{ $item->id }}">

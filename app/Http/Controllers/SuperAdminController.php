@@ -15,13 +15,14 @@ class SuperAdminController extends Controller
     public function index()
     {
         $superadmin = SuperAdmin::all();
-        return view('superadmin.login', compact('superadmin'));
+        return view('superadmin.dashboard', compact('superadmin'));
     }
-    // public function index()
-    // {
-    //     $superadmin = SuperAdmin::all();
-    //     return view('superadmin.addSuper', compact('superadmin'));
-    // }
+
+    public function home()
+    {
+        $superadmin = SuperAdmin::all();
+        return view('superadmin.addSuper', compact('superadmin'));
+    }
     public function dashboard()
     {
         return view('superadmin.dashboard');
@@ -48,7 +49,8 @@ class SuperAdminController extends Controller
         ]);
 
         if (Auth::guard('superadmin')->attempt($credentials)) {
-            if (Auth::guard('superadmin')->user()->email != 'superadmin@gmail.com') {
+            // if (Auth::guard('superadmin')->user()->email != 'superadmin@gmail.com') {
+            if (Auth::guard('superadmin')->user()->role != 'superadmin') {
                 Auth::guard('superadmin')->logout();
                 return redirect()->route('superadmin.login')->with('error', 'Unauthorized User.Access Denied.');
             }
@@ -94,6 +96,7 @@ class SuperAdminController extends Controller
             'companyName' => 'required',
             'email' => 'required|email|unique:super_admins,email', // Ensure the email is unique
             'password' => 'required|min:8', // Minimum length for the password
+            'role_id' => 'required|exists:roles,id',
         ]);
 
         $data = new SuperAdmin();
@@ -102,7 +105,7 @@ class SuperAdminController extends Controller
         $data->phone = $request->input('phone');
         $data->companyName = $request->input('companyName');
         $data->email = $request->input('email');
-
+        $data->role_id = $request->input('role_id');
         // Hash the password before saving
         $data->password = Hash::make($request->password);
         $data->save();

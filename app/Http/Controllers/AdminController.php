@@ -36,7 +36,7 @@ class AdminController extends Controller
         ]);
 
         if (Auth::guard('superadmin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-            if (Auth::guard('superadmin')->user()->role != 'superadmin') {
+            if (Auth::guard('superadmin')->user()->role_id != 'superadmin') {
                 Auth::guard('superadmin')->logout();
                 return redirect()->route('superadmin.login')->with('error', 'Unauthorized User.Access Denied.');
             }

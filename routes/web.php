@@ -37,7 +37,7 @@ Route::group(['prefix' => 'superadmin'], function () {
 
 
 //SuperAdmin
-Route::get('/addNewSuper/create', [SuperAdminController::class, 'index'])->name('superadmin.addSuper');
+Route::get('/addNewSuper/create', [SuperAdminController::class, 'home'])->name('superadmin.addSuper');
 Route::post('/AddNewSuper', [SuperAdminController::class, 'AddNewSuper']);
 Route::put('/UpdateSuper', [SuperAdminController::class, 'UpdateSuper']);
 Route::delete('/DeleteSuperAdmin/{id}', [SuperAdminController::class, 'destroy'])->name('superadmin.destroy');

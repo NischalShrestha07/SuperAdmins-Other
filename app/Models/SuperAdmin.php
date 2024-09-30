@@ -11,15 +11,18 @@ use Illuminate\Database\Eloquent\Model;
 class SuperAdmin extends Authenticatable
 {
     use HasFactory;
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+
+    protected $fillable = ['name', 'address', 'phone', 'companyName', 'email', 'password', 'role_id'];
 
     // Add necessary casting for password or other sensitive data
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

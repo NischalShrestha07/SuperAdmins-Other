@@ -69,6 +69,20 @@
                     <p class="text-danger">{{$message}}</p>
                     @enderror
 
+                    {{-- roles --}}
+                    <div class="input-group mb-3">
+                        <select class="form-control" name="role_id" id="role_id">
+                            <option value="" selected>Role</option>
+                            <option value="superadmin">SuperAdmin</option>
+                            <option value="admin">Admin</option>
+                            <option value="staff">Staff</option>
+                        </select>
+
+                    </div>
+                    @error('role_id')
+                    <p class="text-danger">{{$message}}</p>
+                    @enderror
+
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
